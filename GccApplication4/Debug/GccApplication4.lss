@@ -1,0 +1,708 @@
+
+GccApplication4.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003ee  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000014  00800060  000003ee  00000482  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000007  00800074  00800074  00000496  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000496  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004c8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000048  00000000  00000000  00000504  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000799  00000000  00000000  0000054c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000676  00000000  00000000  00000ce5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003ef  00000000  00000000  0000135b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000108  00000000  00000000  0000174c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003f7  00000000  00000000  00001854  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000002c3  00000000  00000000  00001c4b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  00001f0e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 2a 01 	jmp	0x254	; 0x254 <__vector_1>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 69 01 	jmp	0x2d2	; 0x2d2 <__vector_9>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee ee       	ldi	r30, 0xEE	; 238
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 37       	cpi	r26, 0x74	; 116
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a4 e7       	ldi	r26, 0x74	; 116
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ab 37       	cpi	r26, 0x7B	; 123
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 b6 01 	call	0x36c	; 0x36c <main>
+  8a:	0c 94 f5 01 	jmp	0x3ea	; 0x3ea <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <Get_Digits>:
+
+
+
+/**************************7_Segment Functions***************************/
+char	Get_Digits(unsigned long int Total_Num)
+{	// define a variable that store the Right Location of the DOT.
+  92:	8f 92       	push	r8
+  94:	9f 92       	push	r9
+  96:	af 92       	push	r10
+  98:	bf 92       	push	r11
+  9a:	cf 92       	push	r12
+  9c:	df 92       	push	r13
+  9e:	ef 92       	push	r14
+  a0:	ff 92       	push	r15
+  a2:	1f 93       	push	r17
+  a4:	cf 93       	push	r28
+  a6:	df 93       	push	r29
+  a8:	6b 01       	movw	r12, r22
+  aa:	7c 01       	movw	r14, r24
+	char Local =0 ;
+	// if the Number of Millie seconds is less than (1 S).
+	if (Total_Num <= 999)
+  ac:	68 3e       	cpi	r22, 0xE8	; 232
+  ae:	23 e0       	ldi	r18, 0x03	; 3
+  b0:	72 07       	cpc	r23, r18
+  b2:	81 05       	cpc	r24, r1
+  b4:	91 05       	cpc	r25, r1
+  b6:	78 f5       	brcc	.+94     	; 0x116 <Get_Digits+0x84>
+	{	
+		// display (0) on the last Digit. 
+		Display_Num[3] = 0;
+  b8:	c6 e7       	ldi	r28, 0x76	; 118
+  ba:	d0 e0       	ldi	r29, 0x00	; 0
+  bc:	1b 82       	std	Y+3, r1	; 0x03
+		
+		// display (Total_Num /100) on the third Digit.
+		Display_Num[2] = (Total_Num /100);
+  be:	24 e6       	ldi	r18, 0x64	; 100
+  c0:	30 e0       	ldi	r19, 0x00	; 0
+  c2:	40 e0       	ldi	r20, 0x00	; 0
+  c4:	50 e0       	ldi	r21, 0x00	; 0
+  c6:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+  ca:	2a 83       	std	Y+2, r18	; 0x02
+		
+		// display ((Total_Num-(Display_Num[2]*100))/10) on the second Digit.
+		Display_Num[1] = ((Total_Num-(Display_Num[2]*100))/10);
+  cc:	34 e6       	ldi	r19, 0x64	; 100
+  ce:	23 9f       	mul	r18, r19
+  d0:	c0 01       	movw	r24, r0
+  d2:	11 24       	eor	r1, r1
+  d4:	09 2e       	mov	r0, r25
+  d6:	00 0c       	add	r0, r0
+  d8:	aa 0b       	sbc	r26, r26
+  da:	bb 0b       	sbc	r27, r27
+  dc:	a7 01       	movw	r20, r14
+  de:	96 01       	movw	r18, r12
+  e0:	28 1b       	sub	r18, r24
+  e2:	39 0b       	sbc	r19, r25
+  e4:	4a 0b       	sbc	r20, r26
+  e6:	5b 0b       	sbc	r21, r27
+  e8:	ca 01       	movw	r24, r20
+  ea:	b9 01       	movw	r22, r18
+  ec:	0f 2e       	mov	r0, r31
+  ee:	fa e0       	ldi	r31, 0x0A	; 10
+  f0:	8f 2e       	mov	r8, r31
+  f2:	91 2c       	mov	r9, r1
+  f4:	a1 2c       	mov	r10, r1
+  f6:	b1 2c       	mov	r11, r1
+  f8:	f0 2d       	mov	r31, r0
+  fa:	a5 01       	movw	r20, r10
+  fc:	94 01       	movw	r18, r8
+  fe:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 102:	29 83       	std	Y+1, r18	; 0x01
+		
+		// display ((Total_Num) % 10) on the First Digit.
+		Display_Num[0] = ((Total_Num) % 10);
+ 104:	c7 01       	movw	r24, r14
+ 106:	b6 01       	movw	r22, r12
+ 108:	a5 01       	movw	r20, r10
+ 10a:	94 01       	movw	r18, r8
+ 10c:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 110:	68 83       	st	Y, r22
+		
+		// Return (3) the location of the DOT meaning that the value is less than (1 S), and exit from the function.
+		return 3;
+ 112:	83 e0       	ldi	r24, 0x03	; 3
+ 114:	88 c0       	rjmp	.+272    	; 0x226 <Get_Digits+0x194>
+	}
+	else if (Total_Num <= 9999)
+ 116:	60 31       	cpi	r22, 0x10	; 16
+ 118:	37 e2       	ldi	r19, 0x27	; 39
+ 11a:	73 07       	cpc	r23, r19
+ 11c:	81 05       	cpc	r24, r1
+ 11e:	91 05       	cpc	r25, r1
+ 120:	b0 f1       	brcs	.+108    	; 0x18e <Get_Digits+0xfc>
+	{
+		// the location of the DOT is in (3) meaning that the value is less than (10 S), and complete the function.
+		Local= 3;
+	}
+	else if (Total_Num <= 99999)
+ 122:	60 3a       	cpi	r22, 0xA0	; 160
+ 124:	46 e8       	ldi	r20, 0x86	; 134
+ 126:	74 07       	cpc	r23, r20
+ 128:	41 e0       	ldi	r20, 0x01	; 1
+ 12a:	84 07       	cpc	r24, r20
+ 12c:	91 05       	cpc	r25, r1
+ 12e:	50 f4       	brcc	.+20     	; 0x144 <Get_Digits+0xb2>
+	{
+		// display just the last four Digits. 
+		Total_Num /= 10;
+ 130:	2a e0       	ldi	r18, 0x0A	; 10
+ 132:	30 e0       	ldi	r19, 0x00	; 0
+ 134:	40 e0       	ldi	r20, 0x00	; 0
+ 136:	50 e0       	ldi	r21, 0x00	; 0
+ 138:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 13c:	69 01       	movw	r12, r18
+ 13e:	7a 01       	movw	r14, r20
+		// the location of the DOT is in (2) meaning that the value is less than (100 S), and complete the function.
+		Local= 2;
+ 140:	12 e0       	ldi	r17, 0x02	; 2
+ 142:	28 c0       	rjmp	.+80     	; 0x194 <Get_Digits+0x102>
+	}else if (Total_Num <= 999999)
+ 144:	60 34       	cpi	r22, 0x40	; 64
+ 146:	52 e4       	ldi	r21, 0x42	; 66
+ 148:	75 07       	cpc	r23, r21
+ 14a:	5f e0       	ldi	r21, 0x0F	; 15
+ 14c:	85 07       	cpc	r24, r21
+ 14e:	91 05       	cpc	r25, r1
+ 150:	50 f4       	brcc	.+20     	; 0x166 <Get_Digits+0xd4>
+	{
+		// display just the last four Digits.
+		Total_Num /= 100;
+ 152:	24 e6       	ldi	r18, 0x64	; 100
+ 154:	30 e0       	ldi	r19, 0x00	; 0
+ 156:	40 e0       	ldi	r20, 0x00	; 0
+ 158:	50 e0       	ldi	r21, 0x00	; 0
+ 15a:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 15e:	69 01       	movw	r12, r18
+ 160:	7a 01       	movw	r14, r20
+		// the location of the DOT is in (2) meaning that the value is less than (1000 S), and complete the function.
+		Local= 1;
+ 162:	11 e0       	ldi	r17, 0x01	; 1
+ 164:	17 c0       	rjmp	.+46     	; 0x194 <Get_Digits+0x102>
+	}else if (Total_Num <= 9999999)
+ 166:	80 e8       	ldi	r24, 0x80	; 128
+ 168:	c8 16       	cp	r12, r24
+ 16a:	86 e9       	ldi	r24, 0x96	; 150
+ 16c:	d8 06       	cpc	r13, r24
+ 16e:	88 e9       	ldi	r24, 0x98	; 152
+ 170:	e8 06       	cpc	r14, r24
+ 172:	f1 04       	cpc	r15, r1
+ 174:	70 f4       	brcc	.+28     	; 0x192 <Get_Digits+0x100>
+	{
+		// display just the last four Digits.
+		Total_Num /= 1000;
+ 176:	c7 01       	movw	r24, r14
+ 178:	b6 01       	movw	r22, r12
+ 17a:	28 ee       	ldi	r18, 0xE8	; 232
+ 17c:	33 e0       	ldi	r19, 0x03	; 3
+ 17e:	40 e0       	ldi	r20, 0x00	; 0
+ 180:	50 e0       	ldi	r21, 0x00	; 0
+ 182:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 186:	69 01       	movw	r12, r18
+ 188:	7a 01       	movw	r14, r20
+		// the location of the DOT is in (2) meaning that the value is less than (10000 S), and complete the function.
+		Local= 0;
+ 18a:	10 e0       	ldi	r17, 0x00	; 0
+ 18c:	03 c0       	rjmp	.+6      	; 0x194 <Get_Digits+0x102>
+		return 3;
+	}
+	else if (Total_Num <= 9999)
+	{
+		// the location of the DOT is in (3) meaning that the value is less than (10 S), and complete the function.
+		Local= 3;
+ 18e:	13 e0       	ldi	r17, 0x03	; 3
+ 190:	01 c0       	rjmp	.+2      	; 0x194 <Get_Digits+0x102>
+
+
+/**************************7_Segment Functions***************************/
+char	Get_Digits(unsigned long int Total_Num)
+{	// define a variable that store the Right Location of the DOT.
+	char Local =0 ;
+ 192:	10 e0       	ldi	r17, 0x00	; 0
+		Total_Num /= 1000;
+		// the location of the DOT is in (2) meaning that the value is less than (10000 S), and complete the function.
+		Local= 0;
+	}
+	// display ((Total_Num)/1000) on the last Digit
+	Display_Num[3] = ((Total_Num)/1000);
+ 194:	c7 01       	movw	r24, r14
+ 196:	b6 01       	movw	r22, r12
+ 198:	28 ee       	ldi	r18, 0xE8	; 232
+ 19a:	33 e0       	ldi	r19, 0x03	; 3
+ 19c:	40 e0       	ldi	r20, 0x00	; 0
+ 19e:	50 e0       	ldi	r21, 0x00	; 0
+ 1a0:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 1a4:	c6 e7       	ldi	r28, 0x76	; 118
+ 1a6:	d0 e0       	ldi	r29, 0x00	; 0
+ 1a8:	2b 83       	std	Y+3, r18	; 0x03
+	// display ((Total_Num - ( (Display_Num[3])*1000) ) / 100) on the third Digit.
+	Display_Num[2] = ((Total_Num - ( (Display_Num[3])*1000) ) / 100);
+ 1aa:	48 ee       	ldi	r20, 0xE8	; 232
+ 1ac:	53 e0       	ldi	r21, 0x03	; 3
+ 1ae:	24 9f       	mul	r18, r20
+ 1b0:	c0 01       	movw	r24, r0
+ 1b2:	25 9f       	mul	r18, r21
+ 1b4:	90 0d       	add	r25, r0
+ 1b6:	11 24       	eor	r1, r1
+ 1b8:	09 2e       	mov	r0, r25
+ 1ba:	00 0c       	add	r0, r0
+ 1bc:	aa 0b       	sbc	r26, r26
+ 1be:	bb 0b       	sbc	r27, r27
+ 1c0:	46 01       	movw	r8, r12
+ 1c2:	57 01       	movw	r10, r14
+ 1c4:	88 1a       	sub	r8, r24
+ 1c6:	99 0a       	sbc	r9, r25
+ 1c8:	aa 0a       	sbc	r10, r26
+ 1ca:	bb 0a       	sbc	r11, r27
+ 1cc:	c5 01       	movw	r24, r10
+ 1ce:	b4 01       	movw	r22, r8
+ 1d0:	24 e6       	ldi	r18, 0x64	; 100
+ 1d2:	30 e0       	ldi	r19, 0x00	; 0
+ 1d4:	40 e0       	ldi	r20, 0x00	; 0
+ 1d6:	50 e0       	ldi	r21, 0x00	; 0
+ 1d8:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 1dc:	2a 83       	std	Y+2, r18	; 0x02
+	// display (((Total_Num-(Display_Num[3]*1000))-(Display_Num[2]*100))/10) on the second Digit.
+	Display_Num[1] = (((Total_Num-(Display_Num[3]*1000))-(Display_Num[2]*100))/10);
+ 1de:	34 e6       	ldi	r19, 0x64	; 100
+ 1e0:	23 9f       	mul	r18, r19
+ 1e2:	c0 01       	movw	r24, r0
+ 1e4:	11 24       	eor	r1, r1
+ 1e6:	09 2e       	mov	r0, r25
+ 1e8:	00 0c       	add	r0, r0
+ 1ea:	aa 0b       	sbc	r26, r26
+ 1ec:	bb 0b       	sbc	r27, r27
+ 1ee:	a5 01       	movw	r20, r10
+ 1f0:	94 01       	movw	r18, r8
+ 1f2:	28 1b       	sub	r18, r24
+ 1f4:	39 0b       	sbc	r19, r25
+ 1f6:	4a 0b       	sbc	r20, r26
+ 1f8:	5b 0b       	sbc	r21, r27
+ 1fa:	ca 01       	movw	r24, r20
+ 1fc:	b9 01       	movw	r22, r18
+ 1fe:	0f 2e       	mov	r0, r31
+ 200:	fa e0       	ldi	r31, 0x0A	; 10
+ 202:	8f 2e       	mov	r8, r31
+ 204:	91 2c       	mov	r9, r1
+ 206:	a1 2c       	mov	r10, r1
+ 208:	b1 2c       	mov	r11, r1
+ 20a:	f0 2d       	mov	r31, r0
+ 20c:	a5 01       	movw	r20, r10
+ 20e:	94 01       	movw	r18, r8
+ 210:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 214:	29 83       	std	Y+1, r18	; 0x01
+	// display ((Total_Num) % 10) on the First Digit.
+	Display_Num[0] = ((Total_Num) % 10);
+ 216:	c7 01       	movw	r24, r14
+ 218:	b6 01       	movw	r22, r12
+ 21a:	a5 01       	movw	r20, r10
+ 21c:	94 01       	movw	r18, r8
+ 21e:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <__udivmodsi4>
+ 222:	68 83       	st	Y, r22
+	
+	// return the location of the DOT.
+	return Local;
+ 224:	81 2f       	mov	r24, r17
+}
+ 226:	df 91       	pop	r29
+ 228:	cf 91       	pop	r28
+ 22a:	1f 91       	pop	r17
+ 22c:	ff 90       	pop	r15
+ 22e:	ef 90       	pop	r14
+ 230:	df 90       	pop	r13
+ 232:	cf 90       	pop	r12
+ 234:	bf 90       	pop	r11
+ 236:	af 90       	pop	r10
+ 238:	9f 90       	pop	r9
+ 23a:	8f 90       	pop	r8
+ 23c:	08 95       	ret
+
+0000023e <_7Segment_Display>:
+//////////////////////////////////////////////////////////////////////////
+void	_7Segment_Display(char Display_Value)
+{	// make all Pins in PORTA HIGH ---> Disable All Segments.
+	PORTA	=  (0xFF);
+ 23e:	9f ef       	ldi	r25, 0xFF	; 255
+ 240:	9b bb       	out	0x1b, r25	; 27
+	// Write the PORTA to a specific value the represent the given number. 
+	PORTA	=  _7_segment[Display_Value];
+ 242:	e8 2f       	mov	r30, r24
+ 244:	f0 e0       	ldi	r31, 0x00	; 0
+ 246:	ee 0f       	add	r30, r30
+ 248:	ff 1f       	adc	r31, r31
+ 24a:	e0 5a       	subi	r30, 0xA0	; 160
+ 24c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 24e:	80 81       	ld	r24, Z
+ 250:	8b bb       	out	0x1b, r24	; 27
+ 252:	08 95       	ret
+
+00000254 <__vector_1>:
+/************************************************************************/
+
+                                  
+/************************************************************************/
+ISR(INT0_vect)
+{	// Calculate the number of Millie seconds.
+ 254:	1f 92       	push	r1
+ 256:	0f 92       	push	r0
+ 258:	0f b6       	in	r0, 0x3f	; 63
+ 25a:	0f 92       	push	r0
+ 25c:	11 24       	eor	r1, r1
+ 25e:	2f 93       	push	r18
+ 260:	3f 93       	push	r19
+ 262:	4f 93       	push	r20
+ 264:	5f 93       	push	r21
+ 266:	6f 93       	push	r22
+ 268:	7f 93       	push	r23
+ 26a:	8f 93       	push	r24
+ 26c:	9f 93       	push	r25
+ 26e:	af 93       	push	r26
+ 270:	bf 93       	push	r27
+ 272:	ef 93       	push	r30
+ 274:	ff 93       	push	r31
+	DOT_Place=Get_Digits(OverFlow_Counter);
+ 276:	60 91 74 00 	lds	r22, 0x0074	; 0x800074 <__data_end>
+ 27a:	70 91 75 00 	lds	r23, 0x0075	; 0x800075 <__data_end+0x1>
+ 27e:	07 2e       	mov	r0, r23
+ 280:	00 0c       	add	r0, r0
+ 282:	88 0b       	sbc	r24, r24
+ 284:	99 0b       	sbc	r25, r25
+ 286:	0e 94 49 00 	call	0x92	; 0x92 <Get_Digits>
+ 28a:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <DOT_Place>
+	
+	// change the State of the TIMER/COUNTER peripheral (START/STOP) by changing its prescaler value.
+	// (CS01,CS00 = 0,0 -----> Stop the Peripheral) , (CS01,CS00 = 1,1 -----> Start the Peripheral , and the prescaler is (Fclk/64) ).
+	TCCR0	^=  ( 1 << CS01) ;
+ 28e:	93 b7       	in	r25, 0x33	; 51
+ 290:	82 e0       	ldi	r24, 0x02	; 2
+ 292:	89 27       	eor	r24, r25
+ 294:	83 bf       	out	0x33, r24	; 51
+	TCCR0	^=  ( 1 << CS00) ;
+ 296:	93 b7       	in	r25, 0x33	; 51
+ 298:	81 e0       	ldi	r24, 0x01	; 1
+ 29a:	89 27       	eor	r24, r25
+ 29c:	83 bf       	out	0x33, r24	; 51
+	// change the State of the LED (START/STOP) , to start with the Starting of the Timer and Stop with it.
+	PORTD   ^=	( 1 << PORTD7);
+ 29e:	82 b3       	in	r24, 0x12	; 18
+ 2a0:	80 58       	subi	r24, 0x80	; 128
+ 2a2:	82 bb       	out	0x12, r24	; 18
+	// initiate the TCNT0 register (the counter at the Timer Peripheral)
+	TCNT0 = 6;
+ 2a4:	86 e0       	ldi	r24, 0x06	; 6
+ 2a6:	82 bf       	out	0x32, r24	; 50
+	// initiate the OverFlow counter to (0) for each time we press the button.
+	OverFlow_Counter = 0;
+ 2a8:	10 92 75 00 	sts	0x0075, r1	; 0x800075 <__data_end+0x1>
+ 2ac:	10 92 74 00 	sts	0x0074, r1	; 0x800074 <__data_end>
+
+}
+ 2b0:	ff 91       	pop	r31
+ 2b2:	ef 91       	pop	r30
+ 2b4:	bf 91       	pop	r27
+ 2b6:	af 91       	pop	r26
+ 2b8:	9f 91       	pop	r25
+ 2ba:	8f 91       	pop	r24
+ 2bc:	7f 91       	pop	r23
+ 2be:	6f 91       	pop	r22
+ 2c0:	5f 91       	pop	r21
+ 2c2:	4f 91       	pop	r20
+ 2c4:	3f 91       	pop	r19
+ 2c6:	2f 91       	pop	r18
+ 2c8:	0f 90       	pop	r0
+ 2ca:	0f be       	out	0x3f, r0	; 63
+ 2cc:	0f 90       	pop	r0
+ 2ce:	1f 90       	pop	r1
+ 2d0:	18 95       	reti
+
+000002d2 <__vector_9>:
+//////////////////////////////////////////////////////////////////////////
+ISR(TIMER0_OVF_vect)
+{	// increasing the OverFlow Counter By (1) each Time.
+ 2d2:	1f 92       	push	r1
+ 2d4:	0f 92       	push	r0
+ 2d6:	0f b6       	in	r0, 0x3f	; 63
+ 2d8:	0f 92       	push	r0
+ 2da:	11 24       	eor	r1, r1
+ 2dc:	8f 93       	push	r24
+ 2de:	9f 93       	push	r25
+	OverFlow_Counter++;
+ 2e0:	80 91 74 00 	lds	r24, 0x0074	; 0x800074 <__data_end>
+ 2e4:	90 91 75 00 	lds	r25, 0x0075	; 0x800075 <__data_end+0x1>
+ 2e8:	01 96       	adiw	r24, 0x01	; 1
+ 2ea:	90 93 75 00 	sts	0x0075, r25	; 0x800075 <__data_end+0x1>
+ 2ee:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <__data_end>
+	// initiate the TCNT0 register (the counter at the Timer Peripheral) .
+	TCNT0 = 6;
+ 2f2:	86 e0       	ldi	r24, 0x06	; 6
+ 2f4:	82 bf       	out	0x32, r24	; 50
+}
+ 2f6:	9f 91       	pop	r25
+ 2f8:	8f 91       	pop	r24
+ 2fa:	0f 90       	pop	r0
+ 2fc:	0f be       	out	0x3f, r0	; 63
+ 2fe:	0f 90       	pop	r0
+ 300:	1f 90       	pop	r1
+ 302:	18 95       	reti
+
+00000304 <Open_LOOP>:
+	char local_counter ;
+	while (1)
+	{	// Loop on the 7_segment matrix Digits.
+		for (local_counter = 0; local_counter < 4; local_counter++)
+		{	// Enable the wanted Digit.
+			SET_BIT(PORTD,local_counter+3);					
+ 304:	cc 24       	eor	r12, r12
+ 306:	c3 94       	inc	r12
+ 308:	d1 2c       	mov	r13, r1
+ 30a:	0f 2e       	mov	r0, r31
+ 30c:	f6 e7       	ldi	r31, 0x76	; 118
+ 30e:	ef 2e       	mov	r14, r31
+ 310:	f0 e0       	ldi	r31, 0x00	; 0
+ 312:	ff 2e       	mov	r15, r31
+ 314:	f0 2d       	mov	r31, r0
+
+
+
+/*******************The Function of Dispaying****************************/
+void	Open_LOOP()
+{	// the counter of the Loop.
+ 316:	0f 2e       	mov	r0, r31
+ 318:	f3 e0       	ldi	r31, 0x03	; 3
+ 31a:	af 2e       	mov	r10, r31
+ 31c:	b1 2c       	mov	r11, r1
+ 31e:	f0 2d       	mov	r31, r0
+	char local_counter ;
+	while (1)
+	{	// Loop on the 7_segment matrix Digits.
+		for (local_counter = 0; local_counter < 4; local_counter++)
+ 320:	10 e0       	ldi	r17, 0x00	; 0
+		{	// Enable the wanted Digit.
+			SET_BIT(PORTD,local_counter+3);					
+ 322:	82 b3       	in	r24, 0x12	; 18
+ 324:	e6 01       	movw	r28, r12
+ 326:	0a 2c       	mov	r0, r10
+ 328:	02 c0       	rjmp	.+4      	; 0x32e <Open_LOOP+0x2a>
+ 32a:	cc 0f       	add	r28, r28
+ 32c:	dd 1f       	adc	r29, r29
+ 32e:	0a 94       	dec	r0
+ 330:	e2 f7       	brpl	.-8      	; 0x32a <Open_LOOP+0x26>
+ 332:	8c 2b       	or	r24, r28
+ 334:	82 bb       	out	0x12, r24	; 18
+			_7Segment_Display(Display_Num[local_counter]);
+ 336:	f7 01       	movw	r30, r14
+ 338:	81 91       	ld	r24, Z+
+ 33a:	7f 01       	movw	r14, r30
+ 33c:	0e 94 1f 01 	call	0x23e	; 0x23e <_7Segment_Display>
+			// Put the DOT on its place.
+			if (DOT_Place == local_counter)					
+ 340:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <DOT_Place>
+ 344:	81 13       	cpse	r24, r17
+ 346:	01 c0       	rjmp	.+2      	; 0x34a <Open_LOOP+0x46>
+			{ CLR_BIT(PORTA,PORTA7); }
+ 348:	df 98       	cbi	0x1b, 7	; 27
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 34a:	8f e1       	ldi	r24, 0x1F	; 31
+ 34c:	9e e4       	ldi	r25, 0x4E	; 78
+ 34e:	01 97       	sbiw	r24, 0x01	; 1
+ 350:	f1 f7       	brne	.-4      	; 0x34e <Open_LOOP+0x4a>
+ 352:	00 c0       	rjmp	.+0      	; 0x354 <Open_LOOP+0x50>
+ 354:	00 00       	nop
+			// Delay for the presentation.
+			_delay_ms(5);		
+			// Disable the Number on its Digit.									
+			CLR_BIT(PORTD,local_counter+3);					
+ 356:	82 b3       	in	r24, 0x12	; 18
+ 358:	c0 95       	com	r28
+ 35a:	c8 23       	and	r28, r24
+ 35c:	c2 bb       	out	0x12, r28	; 18
+void	Open_LOOP()
+{	// the counter of the Loop.
+	char local_counter ;
+	while (1)
+	{	// Loop on the 7_segment matrix Digits.
+		for (local_counter = 0; local_counter < 4; local_counter++)
+ 35e:	1f 5f       	subi	r17, 0xFF	; 255
+ 360:	9f ef       	ldi	r25, 0xFF	; 255
+ 362:	a9 1a       	sub	r10, r25
+ 364:	b9 0a       	sbc	r11, r25
+ 366:	14 30       	cpi	r17, 0x04	; 4
+ 368:	e1 f6       	brne	.-72     	; 0x322 <Open_LOOP+0x1e>
+ 36a:	cf cf       	rjmp	.-98     	; 0x30a <Open_LOOP+0x6>
+
+0000036c <main>:
+	// 	Prescaler = 64
+	// 	T = 1 mS
+
+	// we Use the Normal mode ,so we just need to enable the overflow interrupt.
+	//  Enable OverFlow Interrupt.
+	SET_BIT(TIMSK,TOIE0);          
+ 36c:	89 b7       	in	r24, 0x39	; 57
+ 36e:	81 60       	ori	r24, 0x01	; 1
+ 370:	89 bf       	out	0x39, r24	; 57
+	/************************************************************************/
+	SET_BIT(DDRD,DDD7) ;
+ 372:	8f 9a       	sbi	0x11, 7	; 17
+	/**********************7_Segments GENERAL PINS***************************/
+	// 7_segment Configurations
+	DDRA	=    (0xFF) ;    // all pins in PORTA are output pins.
+ 374:	8f ef       	ldi	r24, 0xFF	; 255
+ 376:	8a bb       	out	0x1a, r24	; 26
+	PORTA	=    (0x00) ;	 //the start state of these pins are (LOW) state
+ 378:	1b ba       	out	0x1b, r1	; 27
+	// 7_segment Enable Pins.
+	DDRD   |=   (0x78)	;    // pin 3,4,5,6 in PORTD are output
+ 37a:	81 b3       	in	r24, 0x11	; 17
+ 37c:	88 67       	ori	r24, 0x78	; 120
+ 37e:	81 bb       	out	0x11, r24	; 17
+	CLR_BIT(PORTD,3);		 // the start state of these pins are low state
+ 380:	93 98       	cbi	0x12, 3	; 18
+	CLR_BIT(PORTD,4);		 // the start state of these pins are low state
+ 382:	94 98       	cbi	0x12, 4	; 18
+	CLR_BIT(PORTD,5);		 // the start state of these pins are low state
+ 384:	95 98       	cbi	0x12, 5	; 18
+	CLR_BIT(PORTD,6);		 // the start state of these pins are low state
+ 386:	96 98       	cbi	0x12, 6	; 18
+	/************************************************************************/
+	
+	
+	/*************************EXTERNAL INTERRUPT******************************/	
+	// 1- configure the INT0 pin as an input Pull_Up pin.
+	CLR_BIT(DDRD,DDD2);
+ 388:	8a 98       	cbi	0x11, 2	; 17
+	SET_BIT(PORTD,PORTD2);
+ 38a:	92 9a       	sbi	0x12, 2	; 18
+	//1- External interrupt (INT0) on Falling Edge.
+	SET_BIT(MCUCR,ISC01);
+ 38c:	85 b7       	in	r24, 0x35	; 53
+ 38e:	82 60       	ori	r24, 0x02	; 2
+ 390:	85 bf       	out	0x35, r24	; 53
+	// 2- External interrupt (INT0) Enable.
+	SET_BIT(GICR,INT0);
+ 392:	8b b7       	in	r24, 0x3b	; 59
+ 394:	80 64       	ori	r24, 0x40	; 64
+ 396:	8b bf       	out	0x3b, r24	; 59
+	/************************************************************************/
+	
+	/***************************Initializations******************************/
+	// initiate the OverFlow Counter at the beginning before anything
+	OverFlow_Counter = 0;
+ 398:	10 92 75 00 	sts	0x0075, r1	; 0x800075 <__data_end+0x1>
+ 39c:	10 92 74 00 	sts	0x0074, r1	; 0x800074 <__data_end>
+	/************************************************************************/
+	sei();
+ 3a0:	78 94       	sei
+	while (1) 
+	    {	Open_LOOP();  };
+ 3a2:	0e 94 82 01 	call	0x304	; 0x304 <Open_LOOP>
+
+000003a6 <__udivmodsi4>:
+ 3a6:	a1 e2       	ldi	r26, 0x21	; 33
+ 3a8:	1a 2e       	mov	r1, r26
+ 3aa:	aa 1b       	sub	r26, r26
+ 3ac:	bb 1b       	sub	r27, r27
+ 3ae:	fd 01       	movw	r30, r26
+ 3b0:	0d c0       	rjmp	.+26     	; 0x3cc <__udivmodsi4_ep>
+
+000003b2 <__udivmodsi4_loop>:
+ 3b2:	aa 1f       	adc	r26, r26
+ 3b4:	bb 1f       	adc	r27, r27
+ 3b6:	ee 1f       	adc	r30, r30
+ 3b8:	ff 1f       	adc	r31, r31
+ 3ba:	a2 17       	cp	r26, r18
+ 3bc:	b3 07       	cpc	r27, r19
+ 3be:	e4 07       	cpc	r30, r20
+ 3c0:	f5 07       	cpc	r31, r21
+ 3c2:	20 f0       	brcs	.+8      	; 0x3cc <__udivmodsi4_ep>
+ 3c4:	a2 1b       	sub	r26, r18
+ 3c6:	b3 0b       	sbc	r27, r19
+ 3c8:	e4 0b       	sbc	r30, r20
+ 3ca:	f5 0b       	sbc	r31, r21
+
+000003cc <__udivmodsi4_ep>:
+ 3cc:	66 1f       	adc	r22, r22
+ 3ce:	77 1f       	adc	r23, r23
+ 3d0:	88 1f       	adc	r24, r24
+ 3d2:	99 1f       	adc	r25, r25
+ 3d4:	1a 94       	dec	r1
+ 3d6:	69 f7       	brne	.-38     	; 0x3b2 <__udivmodsi4_loop>
+ 3d8:	60 95       	com	r22
+ 3da:	70 95       	com	r23
+ 3dc:	80 95       	com	r24
+ 3de:	90 95       	com	r25
+ 3e0:	9b 01       	movw	r18, r22
+ 3e2:	ac 01       	movw	r20, r24
+ 3e4:	bd 01       	movw	r22, r26
+ 3e6:	cf 01       	movw	r24, r30
+ 3e8:	08 95       	ret
+
+000003ea <_exit>:
+ 3ea:	f8 94       	cli
+
+000003ec <__stop_program>:
+ 3ec:	ff cf       	rjmp	.-2      	; 0x3ec <__stop_program>
